@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+#bodyy{
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #252830;
+    color:#fff;
+}
+
+#title-name{
+    font-family: 'Pacifico', cursive;
+    margin-top: 80px;
+    color:#ff5252;
+}
+
+#picForm{
+    color:black;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  #output{
+      margin-left: auto;
+      max-width: 300px;
+      max-height: 400px;
+  }
+
+  #extract{
+      margin-top: 50px;
+  }
