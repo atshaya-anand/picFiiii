@@ -17,13 +17,33 @@
         <h1 id="title-name">Image Manipulator</h1>
         <h3>Online Image - Manipulation Tool!</h3>
       </div>
-    
+
       <div class="jumbotron" style="padding:50px;margin:50px;">
+        <form method="post" action="/upload" enctype="multipart/form-data">
+        <dl>
+        <p>
+        <input type="file" name="file" autocomplete="off" required>
+        </p>
+        </dl>
+        <p>
+        <input type="submit" value="Submit">
+        </p>
+        </form>
+        {% if filename %}
+	         <div>
+	             	<img src="{{ url_for('send_file', filename=filename) }}">
+	         </div>
+        {% endif %}
+
+
         <div class="upload-btn-wrapper">
             <h2 id="sp" class="h2-responsive" style="color: black;">Select Picture</h2>
-          <button class="btn" id="upload">Upload an Image</button>
+
+          <button type="submit" class="btn" id="upload">Upload an Image</button>
           <input type="file" name="myfile" accept="image/*" onchange="loadFile(event)">
-          <img id="output"/>       
+
+
+          <img id="output"/>
           <button class="btn" id="extract" style="display: none;">Extract Image</button>
         </div>
       </div>
@@ -34,7 +54,7 @@
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
-      URL.revokeObjectURL(output.src) 
+      URL.revokeObjectURL(output.src)
     }
     document.getElementById("extract").style.display = "block";
     document.getElementById("sp").style.display = "none";
