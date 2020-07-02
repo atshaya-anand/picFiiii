@@ -28,11 +28,15 @@
   }
 
   #output{
-      margin-left: auto;
       max-width: 300px;
       max-height: 400px;
   }
 
   #extract{
       margin-top: 50px;
+  }
+
+  #dilog{
+    max-width: 300px;
+    max-height: 400px;
   }

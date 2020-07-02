@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
@@ -39,18 +40,26 @@
             </form>
             {% if filename %}
                <div>
-                     <img id="output" src="{{ url_for('send_file', filename=filename) }}">
+                     <img id="output" src="{{ url_for('send_file', filename=filename) }}" onclick="document.getElementById('id01').style.display='block'" style="cursor: pointer;">
                </div>
             {% endif %}
     
           </div>
         </div>
-       
-         
+ </div>
 
-        
-
-      </div>
+ <div id="id01" class="w3-modal" style="color: black;">
+  <div class="w3-modal-content">
+    <div class="w3-container" style="font-family: 'Josefin Sans', sans-serif; ">
+      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      {% if filename %}
+               <div>
+                     <img style="max-width: 800px;max-height: 600px; margin: 8px; padding: 10px;" src="{{ url_for('send_file', filename=filename) }}" onclick="document.getElementById('id01').style.display='block'">
+               </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
