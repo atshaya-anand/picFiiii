@@ -19,49 +19,31 @@
       </div>
 
       <div class="jumbotron" style="padding:50px;margin:50px;">
+       
+          <h2 id="sp" class="h2-responsive" style="color: black;">Select Picture</h2>
+        
         <form method="post" action="/upload" enctype="multipart/form-data">
-        <dl>
+       
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" name="file">
+            <label class="custom-file-label" id="upload" for="inputGroupFile01" style="width:300px;">Choose file</label>
+          </div>       
         <p>
-        <input type="file" name="file" autocomplete="off" required>
-        </p>
-        </dl>
-        <p>
-        <input type="submit" value="Submit">
+        <input class="btn" type="submit" value="Submit" style="margin-top: 10px;">
         </p>
         </form>
         {% if filename %}
 	         <div>
-	             	<img src="{{ url_for('send_file', filename=filename) }}">
+	             	<img id="output" src="{{ url_for('send_file', filename=filename) }}">
 	         </div>
         {% endif %}
 
 
-        <div class="upload-btn-wrapper">
-            <h2 id="sp" class="h2-responsive" style="color: black;">Select Picture</h2>
+        
 
-          <button type="submit" class="btn" id="upload">Upload an Image</button>
-          <input type="file" name="myfile" accept="image/*" onchange="loadFile(event)">
-
-
-          <img id="output"/>
-          <button class="btn" id="extract" style="display: none;">Extract Image</button>
-        </div>
       </div>
 
-    <!-- Optional JavaScript -->
-    <script>
-    var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src)
-    }
-    document.getElementById("extract").style.display = "block";
-    document.getElementById("sp").style.display = "none";
-    document.getElementById("upload").style.display = "none";
-
-  };
-    </script>
+   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
