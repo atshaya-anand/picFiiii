@@ -25,26 +25,7 @@
           <div class="col" style="color: black;">
            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione itaque tenetur dolorum a nobis eius voluptatem magni dignissimos dolores delectus! Tenetur molestiae praesentium fugit porro consectetur explicabo. Odio, magni sit.
           </div>
-          <div class="col">
-            <h2 id="sp" class="h2-responsive" style="color: black;">Select Picture</h2>
 
-            <form method="post" action="/upload" enctype="multipart/form-data">
-
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01" name="file">
-                <label class="custom-file-label" id="upload" for="inputGroupFile01" style="width:300px;">Choose file</label>
-              </div>
-            <p>
-            <input class="btn" type="submit" value="Submit" style="margin-top: 10px;">
-            </p>
-            </form>
-            {% if filename %}
-               <div>
-                     <img id="output" src="{{ url_for('send_file', filename=filename) }}" onclick="document.getElementById('id01').style.display='block'" style="cursor: pointer;">
-               </div>
-            {% endif %}
-
-          </div>
         </div>
  </div>
 
@@ -55,10 +36,6 @@
       {% if filename %}
                <div>
                      <img style="max-width: 800px;max-height: 600px; margin: 8px; padding: 10px;" src="{{ url_for('send_file', filename=filename) }}" onclick="document.getElementById('id01').style.display='block'">
-                     <form method="post" action = "/confirmimage">
-                       <input name = "Forward" type = "submit"></input>
-                       <button name = "cancel" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-                     </form>
                </div>
       {% endif %}
     </div>

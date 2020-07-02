@@ -14,6 +14,11 @@ def allowed_file(filename):
 def Welcome():
     return render_template("index.html")
 
+@app.route("/confirmimage",methods=["GET", "POST"])
+def redirect_page():
+	#print("inside confirm :::")
+	return render_template("Manipulator.html")
+
 @app.route("/upload",methods=["GET", "POST"])
 def upload_img():
     print("inside:")
@@ -45,4 +50,4 @@ def send_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000,debug=True,use_reloader=True)
+    app.run(host="127.0.0.1",port=5000,debug=True,use_reloader=True)
