@@ -18,26 +18,35 @@
         <h3>Online Image - Manipulation Tool!</h3>
       </div>
 
-      <div class="jumbotron" style="padding:50px;margin:50px;">
-       
-          <h2 id="sp" class="h2-responsive" style="color: black;">Select Picture</h2>
-        
-        <form method="post" action="/upload" enctype="multipart/form-data">
-       
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01" name="file">
-            <label class="custom-file-label" id="upload" for="inputGroupFile01" style="width:300px;">Choose file</label>
-          </div>       
-        <p>
-        <input class="btn" type="submit" value="Submit" style="margin-top: 10px;">
-        </p>
-        </form>
-        {% if filename %}
-	         <div>
-	             	<img id="output" src="{{ url_for('send_file', filename=filename) }}">
-	         </div>
-        {% endif %}
+      <div class="jumbotron" style="padding:50px;margin:80px;">
 
+        <div class="row">
+          <div class="col" style="color: black;">
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione itaque tenetur dolorum a nobis eius voluptatem magni dignissimos dolores delectus! Tenetur molestiae praesentium fugit porro consectetur explicabo. Odio, magni sit.
+          </div>
+          <div class="col">
+            <h2 id="sp" class="h2-responsive" style="color: black;">Select Picture</h2>
+        
+            <form method="post" action="/upload" enctype="multipart/form-data">
+           
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" name="file">
+                <label class="custom-file-label" id="upload" for="inputGroupFile01" style="width:300px;">Choose file</label>
+              </div>       
+            <p>
+            <input class="btn" type="submit" value="Submit" style="margin-top: 10px;">
+            </p>
+            </form>
+            {% if filename %}
+               <div>
+                     <img id="output" src="{{ url_for('send_file', filename=filename) }}">
+               </div>
+            {% endif %}
+    
+          </div>
+        </div>
+       
+         
 
         
 
