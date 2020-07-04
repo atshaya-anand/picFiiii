@@ -16,7 +16,7 @@
   <body id="bodyy">
     <div class="container">
         <h1 id="title-name">Image Manipulator</h1>
-        <h3>Online Image - Manipulation Tool!</h3>
+        <h3 style="color: blanchedalmond;">Online Image - Manipulation Tool!</h3>
       </div>
 
       <div class="jumbotron" style="padding:50px;margin:80px;">
@@ -51,13 +51,13 @@
  <div id="id01" class="w3-modal" style="color: black;">
   <div class="w3-modal-content">
     <div class="w3-container" style="font-family: 'Josefin Sans', sans-serif; ">
-      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <!--span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span-->
       {% if filename %}
                <div>
                      <img style="max-width: 800px;max-height: 600px; margin: 8px; padding: 10px;" src="{{ url_for('send_file', filename=filename) }}" onclick="document.getElementById('id01').style.display='block'">
                      <form method="post" action = "/confirmimage">
-                       <input name = "Forward" type = "submit"></input>
-                       <button name = "cancel" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+                      <input class="btn" type="submit" value="Confirm Image" name="Forward" style="margin-top: 10px;">
+                      <button class="btn" onclick="document.getElementById('id01').style.display='none'" style="margin-top: 10px;">Cancel</button>
                      </form>
                </div>
       {% endif %}
