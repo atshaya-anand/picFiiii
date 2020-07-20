@@ -26,45 +26,35 @@
            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione itaque tenetur dolorum a nobis eius voluptatem magni dignissimos dolores delectus! Tenetur molestiae praesentium fugit porro consectetur explicabo. Odio, magni sit.
           </div>
           <div class="col">
-            <h2 id="sp" class="h2-responsive" style="color: black;">Select Picture</h2>
+            <h2>Upload an Image!</h2>
 
-            <form method="post" action="/upload" enctype="multipart/form-data">
-
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01" name="file">
-                <label class="custom-file-label" id="upload" for="inputGroupFile01" style="width:300px;">Choose file</label>
-              </div>
-            <p>
-            <input class="btn" type="submit" value="Submit" style="margin-top: 10px;">
-            </p>
+            <form method="POST">
+              <div id="divId" class="btn" style="height: 40px; width: 200px;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>
+              <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" accept="image/*" onchange="loadFile(event)"></div>
+              <img id="output" style="margin-top: 15px;" />
+              <input id="submit" class="btn" value="Upload!" style="display: none; margin-top: 8px;">
             </form>
-            {% if filename %}
-               <div>
-                     <img id="output" src="{{ url_for('send_file', filename=filename) }}" onclick="document.getElementById('id01').style.display='block'" style="cursor: pointer;">
-               </div>
-            {% endif %}
-
           </div>
-        </div>
- </div>
+          </div>
+      </div>
 
- <div id="id01" class="w3-modal" style="color: black;">
-  <div class="w3-modal-content">
-    <div class="w3-container" style="font-family: 'Josefin Sans', sans-serif; ">
-      <!--span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span-->
-      {% if filename %}
-               <div>
-                     <img style="max-width: 800px;max-height: 600px; margin: 8px; padding: 10px;" src="{{ url_for('send_file', filename=filename) }}" onclick="document.getElementById('id01').style.display='block'">
-                     <form method="post" action = "/confirmimage">
-                      <input class="btn" type="submit" value="Confirm Image" name="Forward" style="margin-top: 10px;">
-                      <button class="btn" onclick="document.getElementById('id01').style.display='none'" style="margin-top: 10px;">Cancel</button>
-                     </form>
-               </div>
-      {% endif %}
-    </div>
-  </div>
-</div>
+ 
+      <script>
 
+        function getFile(){
+            document.getElementById("upfile").click();
+        }
+
+        var loadFile = function(event) {
+          var output = document.getElementById('output');
+          output.src = URL.createObjectURL(event.target.files[0]);
+          output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+          }
+          document.getElementById('divId').innerHTML = 'Click to change Image!';
+          document.getElementById('submit').style.display = "block";
+        };
+      </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
