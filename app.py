@@ -1,14 +1,16 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
+import flask
 app = Flask(__name__)
 
-@app.route("/",methods=['GET','POST'])
+@app.route("/")
 def Welcome():
     return render_template("index.html")
 
+@app.route('/imageFilters/',methods=['GET','POST'])
 def upload():
-    imagefile = flask.request.files.get('upfile', '') 
-    print(imagefile)     
+    imagefile = flask.request.files.get('file') 
+    print(imagefile)    
+    return render_template("filters.html",user_image = imagefile) 
 
 
 if __name__ == '__main__':

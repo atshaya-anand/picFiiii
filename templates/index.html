@@ -28,11 +28,11 @@
           <div class="col">
             <h2>Upload an Image!</h2>
 
-            <form method="POST">
+            <form action="/imageFilters/" method="post">
               <div id="divId" class="btn" style="height: 40px; width: 200px;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>
-              <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" accept="image/*" onchange="loadFile(event)"></div>
+              <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" name="file" type="file" accept="image/*" onchange="loadFile(event)"></div>
               <img id="output" style="margin-top: 15px;" />
-              <input id="submit" class="btn" value="Upload!" style="display: none; margin-top: 8px;">
+              <input type="submit" id="submit" class="btn" value="Upload!" style="display: none; margin-top: 8px;">
             </form>
           </div>
           </div>
@@ -54,6 +54,7 @@
           document.getElementById('divId').innerHTML = 'Click to change Image!';
           document.getElementById('submit').style.display = "block";
         };
+
       </script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
