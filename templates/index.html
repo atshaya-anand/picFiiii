@@ -28,7 +28,7 @@
           <div class="col">
             <h2>Upload an Image!</h2>
 
-            <form action="/imageFilters/" method="post">
+            <form action="/imageFilters/" method="post" enctype="multipart/form-data">
               <div id="divId" class="btn" style="height: 40px; width: 200px;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>
               <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" name="file" type="file" accept="image/*" onchange="loadFile(event)"></div>
               <img id="output" style="margin-top: 15px;" />

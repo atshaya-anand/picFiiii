@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
+      <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
 
     <title>Extract Object</title>
   </head>
@@ -21,6 +24,9 @@
 
       <div class="jumbotron" style="padding:50px;margin:80px;height:400px;">
         <div class="row">
+          <div class="col-sm">
+             <img id="imagebox" width="250" height="250"  src="">
+          </div>    
           <div class="col-sm">
             <div class="dropdown">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione itaque tenetur dolorum a nobis eius voluptatem magni dignissimos dolores delectus! Tenetur molestiae praesentium fugit porro consectetur explicabo. Odio, magni sit.<br />
@@ -58,8 +64,39 @@
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+      >
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
   </body>
+<script>
+    
+    $(document).ready(function(){
+		imagebox = $('#imagebox')
+        console.log("test")
+        var data = 0
+			$.ajax({
+				url: "http://localhost:5000/maskImage", // fix this to your liking
+				type:"POST",
+				data: data,
+				cache: false,
+				processData:false,
+				contentType:false,
+				error: function(data){
+					console.log("upload error" , data);
+					console.log(data.getAllResponseHeaders());
+				},
+				success: function(data){
+					// alert("hello"); // if it's failing on actual server check your server FIREWALL + SET UP CORS
+					bytestring = data['status']
+					image = bytestring.split('\'')[1]
+					imagebox.attr('src' , 'data:image/jpeg;base64,'+image)
+				}
+			});
+		
+});
+  
+</script>    
+    
 </html>
