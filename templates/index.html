@@ -11,22 +11,23 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
 
-    <title>Extract Object</title>
+    <title>PicFiiii</title>
   </head>
   <body id="bodyy">
     <div class="container">
-        <h1 id="title-name">Image Manipulator</h1>
-        <h3 style="color: blanchedalmond;">Online Image - Manipulation Tool!</h3>
+        <h1 id="title-name">PicFiiii</h1>
+        <h3 style="color: blanchedalmond;">Online Image - Filter Tool!</h3>
       </div>
 
       <div class="jumbotron" style="padding:50px;margin:80px;">
 
         <div class="row">
           <div class="col" style="color: black;">
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione itaque tenetur dolorum a nobis eius voluptatem magni dignissimos dolores delectus! Tenetur molestiae praesentium fugit porro consectetur explicabo. Odio, magni sit.
+                This is an Online Image Filter tool! Allows for users to upload an image and select any kind of filters from the Basic and Advanced Filters Dropdowns. 
+                You can view the image with the filters applied simultaneously and can also download the image!
           </div>
           <div class="col">
-            <h2>Upload an Image!</h2>
+            <h2 style="font-family: 'Josefin Sans', sans-serif;">Upload an Image!</h2>
 
             <form action="/imageFilters/" method="post" enctype="multipart/form-data">
               <div id="divId" class="btn" style="height: 40px; width: 200px;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>

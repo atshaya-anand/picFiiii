@@ -14,51 +14,45 @@
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
 
-    <title>Extract Object</title>
+    <title>PicFiiii</title>
   </head>
   <body id="bodyy">
     <div class="container">
-        <h1 id="title-name">Image Manipulator</h1>
-        <h3 style='color: blanchedalmond;'>Online Image - Manipulation Tool!</h3>
+        <h1 id="title-name"> PicFiiii</h1>
+        <h3 style='color: blanchedalmond;'>Online Image - Filter Tool!</h3>
       </div>
 
       <div class="jumbotron" style="padding:50px;margin:80px;height:400px;">
         <div class="row">
           <div class="col-sm">
-             <img id="imagebox" width="250" height="250"  src="">
+             <img id="imagebox" width="300" height="300"  src="">
           </div>    
           <div class="col-sm">
             <div class="dropdown">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione itaque tenetur dolorum a nobis eius voluptatem magni dignissimos dolores delectus! Tenetur molestiae praesentium fugit porro consectetur explicabo. Odio, magni sit.<br />
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Basic Filters
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="cursor: pointer;">
-                <a class="dropdown-item">Blur</a>
-                <a class="dropdown-item" >Sharpen</a>
-                <a class="dropdown-item" >Negate</a>
-                <a class="dropdown-item" >Outline</a>
-                <a class="dropdown-item" >Custom</a>
-                <a class="dropdown-item" >Emboss</a>
-              </div>
+              Basic Filters gives your image a way to emphasize certain features! Apply Basic Filters to make Your Image look even more precise!!<br /><br/>
+              <select id="basic" class="btn" onchange="applyFilter();" style="font-size: 17px;">
+                <option>Basic Filters</option>
+                <option value="blur" class="dropdown-item" style="background-color: #f1f1f1;" >Blur</option>
+                <option value="sharpen" class="dropdown-item" style="background-color: #f1f1f1;" >Sharpen</option>
+                <option value="negate" class="dropdown-item" style="background-color: #f1f1f1;">Negate</option>
+                <option value="outline" class="dropdown-item" style="background-color: #f1f1f1;">Outline</option>
+                <option value="custom" class="dropdown-item" style="background-color: #f1f1f1;">Custom</option>
+                <option value="emboss" class="dropdown-item" style="background-color: #f1f1f1;" >Emboss</option>
+            </select>
             </div>
           </div>
           <div class="col-sm">
             <div class="dropdown">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione itaque tenetur dolorum a nobis eius voluptatem magni dignissimos dolores delectus! Tenetur molestiae praesentium fugit porro consectetur explicabo. Odio, magni sit.<br />
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Advanced Filters
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="cursor: pointer;">
-                <a class="dropdown-item">Cartoonification</a>
-                <a class="dropdown-item" >Pencil Sketch</a>
-                <a class="dropdown-item" >Edge detect</a>
-              </div>
+            Advanced Filters makes your image look more attractives! Try some of our advanced filters to make your image a good looking one ;)<br/><br/>
+              <select id="advance" class="btn" onchange="applyFilter();" style="font-size: 17px;">
+                <option>Advanced Filters</option>
+                <option value="cartoon" class="dropdown-item" style="background-color: #f1f1f1;" >Cartoonification</option>
+                <option value="pencil" class="dropdown-item" style="background-color: #f1f1f1;" >Pencil Sketch</option>
+                <option value="edge" class="dropdown-item" style="background-color: #f1f1f1;">Edge detect</option>
+            </select>
             </div>
           </div>
-          <div class="col-sm">
-            <img src="{{ imagefile }}">
-          </div>
+          
         </div>
       </div>
 
@@ -96,6 +90,12 @@
 			});
 		
 });
+
+function applyFilter(){
+    var basicFilter = document.getElementById('basic').value;
+    var advancedFilter = document.getElementById('advance').value;
+    console.log(advancedFilter);
+}
   
 </script>    
     
