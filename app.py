@@ -25,6 +25,11 @@ def upload():
     #print(imageData,"file data")    
     return render_template("filters.html",user_image = imagefile) 
 
+@app.route('/applyBasics/',methods=['GET','POST'])
+def applyBasics():
+    select = request.form.get('basic')
+    print(select)
+
 @app.route('/maskImage' , methods=['POST'])
 def mask_image():
     #file = request.files['image'].read()

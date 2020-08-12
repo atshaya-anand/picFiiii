@@ -30,7 +30,8 @@
           <div class="col-sm">
             <div class="dropdown">
               Basic Filters gives your image a way to emphasize certain features! Apply Basic Filters to make Your Image look even more precise!!<br /><br/>
-              <select id="basic" class="btn" onchange="applyFilter();" style="font-size: 17px;">
+              <form action="/applyBasics/" method="POST">
+              <select id="basic" class="btn" onchange="applyFilter();" style="font-size: 17px;" name="basic">
                 <option>Basic Filters</option>
                 <option value="blur" class="dropdown-item" style="background-color: #f1f1f1;" >Blur</option>
                 <option value="sharpen" class="dropdown-item" style="background-color: #f1f1f1;" >Sharpen</option>
@@ -38,7 +39,9 @@
                 <option value="outline" class="dropdown-item" style="background-color: #f1f1f1;">Outline</option>
                 <option value="custom" class="dropdown-item" style="background-color: #f1f1f1;">Custom</option>
                 <option value="emboss" class="dropdown-item" style="background-color: #f1f1f1;" >Emboss</option>
-            </select>
+            </select><br />
+            <input type="submit" id="basicSubmit" class="btn" value="Apply Basic Filter!" style="background-color: blueviolet;display: none; margin-top: 8px;">
+            </form>
             </div>
           </div>
           <div class="col-sm">
@@ -59,7 +62,6 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-      >
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
@@ -94,6 +96,8 @@
 function applyFilter(){
     var basicFilter = document.getElementById('basic').value;
     var advancedFilter = document.getElementById('advance').value;
+    document.getElementById('basicSubmit').style.display = 'block';
+    document.getElementById('basicSubmit').value = 'Apply '+basicFilter+' filter!';
     console.log(advancedFilter);
 }
   
