@@ -11,34 +11,43 @@ app = Flask(__name__)
 CORS(app)
 
 
-imageData = []
+imageData = [] #image variable to hold the user selecte image
 
 @app.route("/")
 def Welcome():
     return render_template("index.html")
 
-@app.route('/imageFilters/',methods=['GET','POST'])
+
+@app.route('/imageFilters',methods=['GET','POST'])
 def upload():
     global imageData
     imagefile = flask.request.files.get('file') 
-    imageData = imagefile.read()
-    #print(imageData,"file data")    
-    return render_template("filters.html",user_image = imagefile) 
+    image = imagefile.read()
+    npimg = np.frombuffer(image, np.uint8)
+    img = cv2.imdecode(npimg,cv2.IMREAD_COLOR)
+    imageData = cv2.cvtColor(img,cv2.COLOR_BGR2RGB) 
+    return render_template("filters.html") 
 
-@app.route('/applyBasics/',methods=['GET','POST'])
+
+@app.route('/applyBasics',methods=['GET','POST'])
 def applyBasics():
-    select = request.form.get('basic')
-    print(select)
+    global imageData
+    if request.method == "POST":
+        filter = request.data.decode('UTF-8')
+        print(filter)
+        img = Image.fromarray(imageData.astype("uint8"))
+        rawBytes = io.BytesIO()
+        img.save(rawBytes,"JPEG")
+        rawBytes.seek(0)
+        img_base64 = base64.b64encode(rawBytes.read())
+        return jsonify({'status':str(img_base64)})
+
 
 @app.route('/maskImage' , methods=['POST'])
 def mask_image():
-    #file = request.files['image'].read()
     global imageData
-    npimg = np.frombuffer(imageData, np.uint8)
-    img = cv2.imdecode(npimg,cv2.IMREAD_COLOR)
-    img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-    #print("runnnnnnnnnnn")
-    img = Image.fromarray(img.astype("uint8"))
+    #imageData = np.array(imageData)
+    img = Image.fromarray(imageData.astype("uint8"))
     rawBytes = io.BytesIO()
     img.save(rawBytes,"JPEG")
     rawBytes.seek(0)

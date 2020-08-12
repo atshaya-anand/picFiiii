@@ -30,8 +30,8 @@
           <div class="col-sm">
             <div class="dropdown">
               Basic Filters gives your image a way to emphasize certain features! Apply Basic Filters to make Your Image look even more precise!!<br /><br/>
-              <form action="/applyBasics/" method="POST">
-              <select id="basic" class="btn" onchange="applyFilter();" style="font-size: 17px;" name="basic">
+            
+              <select id="basic" class="btn" onchange="applyFilter(0);" style="font-size: 17px;" name="basic">
                 <option>Basic Filters</option>
                 <option value="blur" class="dropdown-item" style="background-color: #f1f1f1;" >Blur</option>
                 <option value="sharpen" class="dropdown-item" style="background-color: #f1f1f1;" >Sharpen</option>
@@ -40,8 +40,8 @@
                 <option value="custom" class="dropdown-item" style="background-color: #f1f1f1;">Custom</option>
                 <option value="emboss" class="dropdown-item" style="background-color: #f1f1f1;" >Emboss</option>
             </select><br />
-            <input type="submit" id="basicSubmit" class="btn" value="Apply Basic Filter!" style="background-color: blueviolet;display: none; margin-top: 8px;">
-            </form>
+            <input type="submit" id="basicSubmit" onclick="applyFilter(1)" class="btn" value="Apply Basic Filter!" style="background-color: blueviolet;display: none; margin-top: 8px;">
+           
             </div>
           </div>
           <div class="col-sm">
@@ -73,7 +73,7 @@
         console.log("test")
         var data = 0
 			$.ajax({
-				url: "http://localhost:5000/maskImage", // fix this to your liking
+				url: "/maskImage", // fix this to your liking
 				type:"POST",
 				data: data,
 				cache: false,
@@ -93,12 +93,38 @@
 		
 });
 
-function applyFilter(){
+function applyFilter(data){
     var basicFilter = document.getElementById('basic').value;
     var advancedFilter = document.getElementById('advance').value;
-    document.getElementById('basicSubmit').style.display = 'block';
-    document.getElementById('basicSubmit').value = 'Apply '+basicFilter+' filter!';
-    console.log(advancedFilter);
+    
+    if(data == 0){
+        document.getElementById('basicSubmit').style.display = 'block';
+        document.getElementById('basicSubmit').value = 'Apply '+basicFilter+' filter!';
+        console.log(advancedFilter,data);
+    }
+    else if(data == 1){
+        console.log("why is this not working");
+        $.ajax({
+				url: "/applyBasics", // fix this to your liking
+				type:"POST",
+				data: basicFilter,
+				cache: false,
+				processData:false,
+				contentType:false,
+				error: function(data){
+					console.log("upload error" , data);
+					console.log(data.getAllResponseHeaders());
+				},
+				success: function(data){
+					// alert("hello"); // if it's failing on actual server check your server FIREWALL + SET UP CORS
+					bytestring = data['status']
+					image = bytestring.split('\'')[1]
+					imagebox.attr('src' , 'data:image/jpeg;base64,'+image)
+				}
+			});
+    }
+    
+    
 }
   
 </script>    
