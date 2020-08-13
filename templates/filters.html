@@ -25,34 +25,37 @@
       <div class="jumbotron" style="padding:50px;margin:80px;height:400px;">
         <div class="row">
           <div class="col-sm">
-             <img id="imagebox" width="300" height="300"  src="">
+             <img id="imagebox" style="max-width:300px;max-height:400px;"  src="">
           </div>    
           <div class="col-sm">
             <div class="dropdown">
               Basic Filters gives your image a way to emphasize certain features! Apply Basic Filters to make Your Image look even more precise!!<br /><br/>
-            
-              <select id="basic" class="btn" onchange="applyFilter(0);" style="font-size: 17px;" name="basic">
+            <form action="/applyBasics" method="POST">
+              <select id="basic" class="btn" onchange="applyFilter();" style="font-size: 17px;" name="basic">
                 <option>Basic Filters</option>
-                <option value="blur" class="dropdown-item" style="background-color: #f1f1f1;" >Blur</option>
-                <option value="sharpen" class="dropdown-item" style="background-color: #f1f1f1;" >Sharpen</option>
-                <option value="negate" class="dropdown-item" style="background-color: #f1f1f1;">Negate</option>
-                <option value="outline" class="dropdown-item" style="background-color: #f1f1f1;">Outline</option>
-                <option value="custom" class="dropdown-item" style="background-color: #f1f1f1;">Custom</option>
-                <option value="emboss" class="dropdown-item" style="background-color: #f1f1f1;" >Emboss</option>
+                <option value="Blur" class="dropdown-item" style="background-color: #f1f1f1;" >Blur</option>
+                <option value="Sharpen" class="dropdown-item" style="background-color: #f1f1f1;" >Sharpen</option>
+                <option value="Black & White" class="dropdown-item" style="background-color: #f1f1f1;">Black & White</option>
+                <option value="Outline" class="dropdown-item" style="background-color: #f1f1f1;">Outline</option>
+                <option value="Custom" class="dropdown-item" style="background-color: #f1f1f1;">Custom</option>
+                <option value="Emboss" class="dropdown-item" style="background-color: #f1f1f1;" >Emboss</option>
             </select><br />
-            <input type="submit" id="basicSubmit" onclick="applyFilter(1)" class="btn" value="Apply Basic Filter!" style="background-color: blueviolet;display: none; margin-top: 8px;">
-           
+            <input type="submit" id="basicSubmit" class="btn" style="background-color: #efc968;display: none; margin-top: 8px;">
+          </form>
             </div>
           </div>
           <div class="col-sm">
             <div class="dropdown">
             Advanced Filters makes your image look more attractives! Try some of our advanced filters to make your image a good looking one ;)<br/><br/>
-              <select id="advance" class="btn" onchange="applyFilter();" style="font-size: 17px;">
+            <form action="/applyAdvance" method="POST">
+            <select id="advance" class="btn" onchange="applyFilter();" style="font-size: 17px;" name="advance">
                 <option>Advanced Filters</option>
-                <option value="cartoon" class="dropdown-item" style="background-color: #f1f1f1;" >Cartoonification</option>
-                <option value="pencil" class="dropdown-item" style="background-color: #f1f1f1;" >Pencil Sketch</option>
-                <option value="edge" class="dropdown-item" style="background-color: #f1f1f1;">Edge detect</option>
-            </select>
+                <option value="Cartoonification" class="dropdown-item" style="background-color: #f1f1f1;" >Cartoonification</option>
+                <option value="Pencil Sketch" class="dropdown-item" style="background-color: #f1f1f1;" >Pencil Sketch</option>
+                <option value="Edge detect" class="dropdown-item" style="background-color: #f1f1f1;">Edge detect</option>
+            </select><br />
+            <input type="submit" id="advanceSubmit" class="btn" style="background-color: #efc968;display: none; margin-top: 8px;">
+          </form>  
             </div>
           </div>
           
@@ -93,39 +96,19 @@
 		
 });
 
-function applyFilter(data){
+function applyFilter(){
     var basicFilter = document.getElementById('basic').value;
     var advancedFilter = document.getElementById('advance').value;
-    
-    if(data == 0){
+    console.log(advancedFilter)
+    if(basicFilter!='Basic Filters' && advancedFilter=='Advanced Filters'){
         document.getElementById('basicSubmit').style.display = 'block';
         document.getElementById('basicSubmit').value = 'Apply '+basicFilter+' filter!';
-        console.log(advancedFilter,data);
-    }
-    else if(data == 1){
-        console.log("why is this not working");
-        $.ajax({
-				url: "/applyBasics", // fix this to your liking
-				type:"POST",
-				data: basicFilter,
-				cache: false,
-				processData:false,
-				contentType:false,
-				error: function(data){
-					console.log("upload error" , data);
-					console.log(data.getAllResponseHeaders());
-				},
-				success: function(data){
-					// alert("hello"); // if it's failing on actual server check your server FIREWALL + SET UP CORS
-					bytestring = data['status']
-					image = bytestring.split('\'')[1]
-					imagebox.attr('src' , 'data:image/jpeg;base64,'+image)
-				}
-			});
-    }
-    
-    
+    } else{
+        document.getElementById('advanceSubmit').style.display = 'block';
+        document.getElementById('advanceSubmit').value = 'Apply '+advancedFilter+' filter!';
+    }  
 }
+
   
 </script>    
     

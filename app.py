@@ -33,14 +33,30 @@ def upload():
 def applyBasics():
     global imageData
     if request.method == "POST":
-        filter = request.data.decode('UTF-8')
-        print(filter)
-        img = Image.fromarray(imageData.astype("uint8"))
-        rawBytes = io.BytesIO()
-        img.save(rawBytes,"JPEG")
-        rawBytes.seek(0)
-        img_base64 = base64.b64encode(rawBytes.read())
-        return jsonify({'status':str(img_base64)})
+        filter = request.form['basic']
+        if filter == 'Sharpen':
+            kernal = np.array([[0,-1,0],[-1,5,-1],[0,-1,0]])
+            sharpened_img = cv2.filter2D(imageData,-1,kernal)
+            return render_template("output.html")
+        elif filter == 'Blur':
+            kernal = np.array([[0.0625,0.125,0.0625],[0.125,0.25,0.125],[0.0625,0.125,0.0625]])
+            blurred_img = cv2.filter2D(imageData,-1,kernal)
+            return render_template("output.html")
+        elif filter == 'Outline':
+            kernal = np.array([[-1,-1,-1],[-1,8-1],[-1,-1,-1]])
+            outlined_img = cv2.filter2D(imageData,-1,kernal)
+            return render_template("output.html")
+        elif filter == 'Emboss':
+            kernal = np.array([[-2,-1,0],[-1,1,1],[0,1,2]])
+            embossed_img = cv2.filter2D(imageData,-1,kernal)
+            return render_template("output.html")
+        elif filter == 'Custom':
+            kernal = np.array([[0,0,0],[0,1,0],[0,0,0]])
+            custom_img = cv2.filter2D(imageData,-1,kernal)
+            return render_template("output.html")
+        elif filter == 'Black & White':
+            gray_img = cv2.cvtColor(imageData,cv2.COLOR_RGB2GRAY)
+            return render_template("output.html")
 
 
 @app.route('/maskImage' , methods=['POST'])
