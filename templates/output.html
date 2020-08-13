@@ -29,7 +29,7 @@
           </div>    
           <div class="col-sm">
             Back to filters?
-            <form action="/imageFilters">
+            <form action="/backTofilters">
             <input type="submit" class="btn" value="Go Back to Filters Page">
             </form>
           </div>
@@ -44,7 +44,30 @@
 
   </body>
 <script>
-    
+       $(document).ready(function(){
+		imagebox = $('#imagebox')
+        console.log("test")
+        var data = 0
+			$.ajax({
+				url: "/basicfilterImage", // fix this to your liking
+				type:"POST",
+				data: data,
+				cache: false,
+				processData:false,
+				contentType:false,
+				error: function(data){
+					console.log("upload error" , data);
+					console.log(data.getAllResponseHeaders());
+				},
+				success: function(data){
+					// alert("hello"); // if it's failing on actual server check your server FIREWALL + SET UP CORS
+					bytestring = data['status']
+					image = bytestring.split('\'')[1]
+					imagebox.attr('src' , 'data:image/jpeg;base64,'+image)
+				}
+			});
+		
+}); 
    
 
 </script>    
