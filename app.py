@@ -75,8 +75,20 @@ def applyAdvance():
             appliedFilterdata = cartoon_image
             return render_template("output.html")
         if filter == 'Pencil Sketch':
-            pencil_img, img  = cv2.pencilSketch(imageData, sigma_s=60, sigma_r=0.5, shade_factor=0.02)  
-            appliedFilterdata = pencil_img
+            dst_gray, dst_color = cv2.pencilSketch(imageData, sigma_s=60, sigma_r=0.07, shade_factor=0.05)   
+            appliedFilterdata = dst_gray
+            return render_template("output.html")
+        if filter == 'Coloured Pencil Sketch':
+            dst_gray, dst_color = cv2.pencilSketch(imageData, sigma_s=60, sigma_r=0.07, shade_factor=0.05)   
+            appliedFilterdata = dst_color
+            return render_template("output.html")
+        if filter == 'Oil Paint':
+            dst = cv2.xphoto.oilPainting(imageData, 7, 1)
+            appliedFilterdata = dst
+            return render_template("output.html")
+        if filter == 'Water Colour':
+            res = cv2.stylization(imageData, sigma_s=60, sigma_r=0.6)
+            appliedFilterdata = res
             return render_template("output.html")
 
         
