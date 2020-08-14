@@ -65,13 +65,27 @@ def applyBasics():
             appliedFilterdata = gray_img
             return render_template("output.html")
 
+@app.route('/applyAdvance',methods=['GET','POST'])
+def applyAdvance():
+    global imageData,appliedFilterdata
+    if request.method == "POST":
+        filter = request.form['advance']
+        if filter == 'Cartoonification':
+            cartoon_image = cv2.stylization(imageData, sigma_s=150, sigma_r=0.25)  
+            appliedFilterdata = cartoon_image
+            return render_template("output.html")
+        if filter == 'Pencil Sketch':
+            pencil_img, img  = cv2.pencilSketch(imageData, sigma_s=60, sigma_r=0.5, shade_factor=0.02)  
+            appliedFilterdata = pencil_img
+            return render_template("output.html")
+
         
 @app.route('/backTofilters',methods=['GET'])
 def redirectTofilter():
     return render_template("filters.html")
 
 
-@app.route('/basicfilterImage' , methods=['POST'])
+@app.route('/filterImage' , methods=['POST'])
 def render_image():
     global appliedFilterdata
     #imageData = np.array(imageData)
