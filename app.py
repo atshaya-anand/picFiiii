@@ -46,7 +46,7 @@ def applyBasics():
             appliedFilterdata = blurred_img
             return render_template("output.html")
         elif filter == 'Outline':
-            kernal = np.array([[-1,-1,-1],[-1,8-1],[-1,-1,-1]])
+            kernal = np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
             outlined_img = cv2.filter2D(imageData,-1,kernal)
             appliedFilterdata = outlined_img
             return render_template("output.html")
