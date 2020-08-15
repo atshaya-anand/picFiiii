@@ -30,9 +30,9 @@
             <h2 style="font-family: 'Josefin Sans', sans-serif;">Upload an Image!</h2>
 
             <form action="/imageFilters" method="post" enctype="multipart/form-data">
-              <div id="divId" class="btn" style="height: 40px; width: 200px;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>
+              <div id="divId" class="btn" style="height: 40px; width: 70%;height:20%;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>
               <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" name="file" type="file" accept="image/*" onchange="loadFile(event)"></div>
-              <img id="output" style="margin-top: 15px;" />
+              <img id="output" style="margin-top: 15px;width: 75%;height:75%" />
               <input type="submit" id="submit" class="btn" value="Upload!" style="display: none; margin-top: 8px;">
             </form>
           </div>
