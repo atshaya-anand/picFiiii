@@ -39,7 +39,8 @@
                 <option value="Outline" class="dropdown-item" style="background-color: #f1f1f1;">Outline</option>
                 <option value="Custom" class="dropdown-item" style="background-color: #f1f1f1;">Custom</option>
                 <option value="Emboss" class="dropdown-item" style="background-color: #f1f1f1;" >Emboss</option>
-            </select><br />
+            </select><br />  
+            <input type="hidden" name="token" value='{{token}}'>
             <input type="submit" id="basicSubmit" class="btn" style="background-color: #efc968;display: none; margin-top: 8px;">
           </form>
             </div>
@@ -56,6 +57,7 @@
                 <option value="Oil Paint" class="dropdown-item" style="background-color: #f1f1f1;">Oil Paint</option>
                 <option value="Water Colour" class="dropdown-item" style="background-color: #f1f1f1;">Water Colour</option>
             </select><br />
+            <input type="hidden" name="token" value='{{token}}'>
             <input type="submit" id="advanceSubmit" class="btn" style="background-color: #efc968;display: none; margin-top: 8px;">
           </form>  
             </div>
@@ -73,10 +75,15 @@
   </body>
 <script>
     
-    $(document).ready(function(){
+var token = '{{token}}'; 
+$('#token').hide();   
+
+$(document).ready(function(){
 		imagebox = $('#imagebox')
-        console.log("test")
-        var data = 0
+    $('#token').hide();
+        console.log("test");
+        
+        var data = token;
 			$.ajax({
 				url: "/maskImage", // fix this to your liking
 				type:"POST",
@@ -111,7 +118,38 @@ function applyFilter(){
     }  
 }
 
-  
+$(window).on("unload", function(e) {
+    // Do Something
+    post("/clean");
+});
+
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState == 'hidden') { 
+        post("/clean");
+    }
+});
+
+function post(path, params, method='post') {
+     const form = document.createElement('form');
+     form.method = method;
+     form.action = path;
+
+     for (const key in params) {
+         if (params.hasOwnProperty(key)) {
+             const hiddenField = document.createElement('input');
+             hiddenField.type = 'hidden';
+             hiddenField.name = key;
+             hiddenField.value = params[key];
+
+             form.appendChild(hiddenField);
+         }
+     }
+
+     document.body.appendChild(form);
+     form.submit();
+ }
+
+
 </script>    
     
 </html>

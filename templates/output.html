@@ -29,7 +29,8 @@
           </div>    
           <div class="col-sm">
             Back to filters?
-            <form action="/backTofilters">
+            <form action="/backTofilters" method="POST">
+              <input type="hidden" name="token" value='{{token}}'> 
             <input type="submit" class="btn" value="Go Back to Filters Page">
             </form>
           </div>
@@ -45,8 +46,8 @@
   </body>
 <script>
        $(document).ready(function(){
-		imagebox = $('#imagebox')
-        console.log("test")
+		    imagebox = $('#imagebox')
+        console.log("test",'{{token}}')
         var data = 0
 			$.ajax({
 				url: "/filterImage", // fix this to your liking
