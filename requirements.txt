@@ -24,7 +24,7 @@ urllib3==1.25.9
 Werkzeug==1.0.1
 Flask-Cors==3.0.8
 
-joblib==0.13.2
+joblib==1.2.0
 json5==0.8.5
 jsonschema==3.0.2
 
